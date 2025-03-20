@@ -1,7 +1,8 @@
 
 # 🏢 Genesis.TechChallenge
 
-DEscricao do projeto
+O Genesis.TechChallenge é uma aplicação que simula investimentos em CDB (Certificado de Depósito Bancário).
+O usuário informa o valor inicial e o período do investimento, e a aplicação calcula o rendimento bruto e líquido ao final do prazo.
 
 ---
 
