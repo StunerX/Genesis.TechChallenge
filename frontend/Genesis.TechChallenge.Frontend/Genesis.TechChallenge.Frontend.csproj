@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <Target Name="NpmInstall" BeforeTargets="Build">
+        <Exec Command="npm install" WorkingDirectory="$(ProjectDir)" />
+    </Target>
+
+    <Target Name="BuildAngular" DependsOnTargets="NpmInstall" AfterTargets="Build">
+        <Exec Command="npm run build " WorkingDirectory="$(ProjectDir)" />
+    </Target>
+
+    <ItemGroup>
+        <DistFiles Include="$(ProjectDir)dist\**" />
+    </ItemGroup>
+
+    <Target Name="CopyDistOnPublish" AfterTargets="Publish">
+        <Copy SourceFiles="@(DistFiles)" DestinationFolder="$(PublishDir)wwwroot\%(RecursiveDir)" />
+    </Target>
+    
+</Project>

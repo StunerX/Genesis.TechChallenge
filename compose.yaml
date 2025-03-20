@@ -1,0 +1,63 @@
+﻿services:
+  genesis.techchallenge.frontend:
+    image: genesis.techchallenge.frontend
+    build:
+      context: ./frontend/Genesis.TechChallenge.Frontend
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    depends_on:
+      - genesis.techchallenge.webapi
+  
+  genesis.techchallenge.webapi:
+    image: genesis.techchallenge.webapi
+    build:
+      context: .
+      dockerfile: backend/src/Genesis.TechChallenge.WebAPI/Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - elasticsearch
+      
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
+    container_name: elasticsearch
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - xpack.security.enabled=false
+      - http.host=0.0.0.0
+      - transport.host=0.0.0.0
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+        
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.17.0
+    container_name: kibana
+    ports:
+      - "5601:5601"
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+  
+  apm-server:
+    image: docker.elastic.co/apm/apm-server:7.17.0
+    container_name: apm-server
+    depends_on:
+      - elasticsearch
+    ports:
+      - "8200:8200"
+    environment:
+      - output.elasticsearch.hosts=http://elasticsearch:9200
+      - apm-server.rum.enabled=true
+      - apm-server.rum.event_rate.limit=1000
+      - apm-server.rum.allow_origins=["*"]
+      - apm-server.host=0.0.0.0:8200
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8200" ]
+      interval: 10s
+      retries: 5
+      start_period: 20s
+      timeout: 5s

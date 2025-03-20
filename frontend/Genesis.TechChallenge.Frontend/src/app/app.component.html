@@ -1,0 +1,40 @@
+<h1>{{ title }}</h1>
+
+<form [formGroup]="cdbForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="initialAmount">Valor Inicial:</label>
+    <input
+      id="initialAmount"
+      type="number"
+      formControlName="initialAmount"
+      placeholder="Digite o valor inicial"
+    />
+  </div>
+
+  <div>
+    <label for="period">Período (meses):</label>
+    <input
+      id="period"
+      type="number"
+      formControlName="period"
+      placeholder="Digite o período"
+    />
+  </div>
+
+  <button type="submit">Calcular</button>
+</form>
+
+<hr />
+
+<div *ngIf="grossAmount !== null && netAmount !== null">
+  <h2>Resultado:</h2>
+  <div>
+    <label>Valor Final Bruto:</label>
+    <input type="text" [value]="grossAmount" readonly />
+  </div>
+
+  <div>
+    <label>Valor Final Liquido:</label>
+    <input type="text" [value]="netAmount" readonly />
+  </div>
+</div>

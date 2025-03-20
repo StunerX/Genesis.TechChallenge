@@ -1,0 +1,93 @@
+# ---------------------------------------------------------------------------
+# .NET / C# backend
+# ---------------------------------------------------------------------------
+backend/**/bin/
+backend/**/obj/
+frontend/**/bin/
+frontend/**/obj/
+
+backend/**/coverage/
+backend/**/coveragereport/
+coveragereport/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider and VSCode
+.idea/
+.vscode/
+
+# Build results and logs
+backend/**/TestResults/
+backend/**/publish/
+backend/**/Generated_Code/
+backend/**/*.log
+backend/**/*.db
+
+# Code Coverage (Coverlet & XPlat)
+backend/**/coverage/
+backend/**/coveragereport/
+backend/**/coverage.*.xml
+backend/**/coverage.cobertura.xml
+
+# DotCover
+backend/**/.coverage
+backend/**/.coveragexml
+
+# EF Core Migrations snapshots (optional)
+backend/**/Migrations/*Snapshot.cs
+
+# ---------------------------------------------------------------------------
+# Frontend / Angular CLI
+# ---------------------------------------------------------------------------
+frontend/Genesis.TechChallenge.Frontend/node_modules/
+frontend/Genesis.TechChallenge.Frontend/dist/
+frontend/Genesis.TechChallenge.Frontend/.angular/
+frontend/Genesis.TechChallenge.Frontend/.eslintcache
+
+# Logs
+frontend/Genesis.TechChallenge.Frontend/npm-debug.log*
+frontend/Genesis.TechChallenge.Frontend/yarn-debug.log*
+frontend/Genesis.TechChallenge.Frontend/yarn-error.log*
+
+# Environment files (⚠️ incluir se não for usar no versionamento)
+frontend/Genesis.TechChallenge.Frontend/src/environments/environment*.ts
+
+# ---------------------------------------------------------------------------
+# Docker & Infra
+# ---------------------------------------------------------------------------
+*.tar
+*.img
+docker-compose.override.yml
+.env
+.env.*
+
+# Docker volumes (opcional)
+volumes/
+
+# ---------------------------------------------------------------------------
+# Sistema Operacional
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ---------------------------------------------------------------------------
+# Outras extensões indesejadas
+# ---------------------------------------------------------------------------
+*.bak
+*.swp
+*.tmp
+*.temp
+*.old
+*.orig
+
+# ---------------------------------------------------------------------------
+# Solution Items
+# ---------------------------------------------------------------------------
+# Ignorar logs ou builds globais na raiz
+/TestResults/
