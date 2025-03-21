@@ -45,6 +45,7 @@ export class AppComponent implements OnInit {
         },
         error: (err) => {
           console.error('Erro ao consultar CDB:', err);
+          alert(JSON.stringify(err.error.errors))
         }
       });
     }
