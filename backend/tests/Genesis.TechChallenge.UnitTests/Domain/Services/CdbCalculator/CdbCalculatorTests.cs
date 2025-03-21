@@ -53,14 +53,17 @@ public class CdbCalculatorTests(CdbCalculatorTestsFixture fixture) : IClassFixtu
             .WithMessage("Initial amount must be greater than 0*");
     }
 
-    [Fact(DisplayName = "Should throw ArgumentException when investment period is invalid")]
-    public void InvestmentPeriod_Should_Throw_When_Months_Less_Than_One()
+    [Theory(DisplayName = "Should throw ArgumentException when investment period is invalid")]
+    [InlineData(-1)]
+    [InlineData(0)]
+    [InlineData(1)]
+    public void InvestmentPeriod_Should_Throw_When_Period_Less_Than_One(int period)
     {
         // Act
         Action action = () => fixture.GetPeriod(0);
 
         // Assert
         action.Should().Throw<ArgumentException>()
-            .WithMessage("Period must be greater than 0*");
+            .WithMessage("Period must be greater than 1*");
     }
 }

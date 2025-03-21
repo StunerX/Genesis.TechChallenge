@@ -17,12 +17,12 @@ public class CalculateCdbTests(CalculateCdbTestsFixture fixture) : IClassFixture
     [InlineData(1000, 36, 1416.56, 1354.07)]
     public async Task Post_Should_ReturnOk_With_CorrectResults(
         decimal initialAmount,
-        int termInMonths,
+        int period,
         decimal expectedGross,
         decimal expectedNet)
     {
         // Arrange
-        var request = new CalculateCdbRequest(initialAmount, termInMonths);
+        var request = new CalculateCdbRequest(initialAmount, period);
 
         // Act
         var response = await fixture.ApiClient.PostAsync(Endpoint, request);
@@ -41,14 +41,15 @@ public class CalculateCdbTests(CalculateCdbTestsFixture fixture) : IClassFixture
     [InlineData(0, 12, "InitialAmount")]
     [InlineData(-100, 12, "InitialAmount")]
     [InlineData(1000, 0, "Period")]
+    [InlineData(1000, 1, "Period")]
     [InlineData(1000, -12, "Period")]
     public async Task Post_Should_ReturnBadRequest_When_Input_IsInvalid(
         decimal initialAmount,
-        int termInMonths,
+        int period,
         string expectedErrorField)
     {
         // Arrange
-        var request = new CalculateCdbRequest(initialAmount, termInMonths);
+        var request = new CalculateCdbRequest(initialAmount, period);
 
         // Act
         var response = await fixture.ApiClient.PostAsync(Endpoint, request);

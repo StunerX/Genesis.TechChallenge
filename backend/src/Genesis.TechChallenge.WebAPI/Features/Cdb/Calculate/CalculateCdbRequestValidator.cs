@@ -14,7 +14,7 @@ public class CalculateCdbRequestValidator : AbstractValidator<CalculateCdbReques
             .WithMessage("The initial amount must be greater than zero.");
 
         RuleFor(x => x.Period)
-            .GreaterThan(0)
-            .WithMessage("The term in months must be greater than zero.");
+            .GreaterThan(1)
+            .WithMessage("The period must be greater than 1.");
     }
 }

@@ -12,10 +12,10 @@ public class CalculateCdbCommandHandlerTests
     [InlineData(1000, 12, 1123.08, 1098.47)]
     [InlineData(1000, 24, 1261.31, 1215.58)]
     [InlineData(1000, 36, 1416.56, 1354.07)]
-    public async Task Handle_Should_Calculate_Investment_Returns(decimal initialAmount, int termInMonths, decimal expectedGross, decimal expectedNet)
+    public async Task Handle_Should_Calculate_Investment_Returns(decimal initialAmount, int period, decimal expectedGross, decimal expectedNet)
     {
         // Arrange
-        var command = new CalculateCdbCommand(initialAmount, termInMonths);
+        var command = new CalculateCdbCommand(initialAmount, period);
 
         // Act
 

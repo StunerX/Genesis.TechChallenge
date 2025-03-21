@@ -5,7 +5,6 @@ namespace Genesis.TechChallenge.UnitTests.Domain.ValueObjects.InvestmentPeriod;
 public class InvestmentPeriodTests
 {
     [Theory(DisplayName = "Should create InvestmentPeriod when period is valid")]
-    [InlineData(1)]
     [InlineData(6)]
     [InlineData(12)]
     [InlineData(24)]
@@ -21,6 +20,7 @@ public class InvestmentPeriodTests
 
     [Theory(DisplayName = "Should throw exception when period is invalid")]
     [InlineData(0)]
+    [InlineData(1)]
     [InlineData(-1)]
     public void Constructor_Should_Throw_Exception_When_Period_Is_Invalid(int invalidPeriod)
     {
@@ -29,12 +29,11 @@ public class InvestmentPeriodTests
 
         // Assert
         action.Should().Throw<ArgumentException>()
-            .WithMessage("Period must be greater than 0*")
+            .WithMessage("Period must be greater than 1*")
             .And.ParamName.Should().Be("Period");
     }
 
     [Theory(DisplayName = "Should return correct tax rate based on investment period")]
-    [InlineData(1, 22.5)]
     [InlineData(6, 22.5)]
     [InlineData(7, 20)]
     [InlineData(12, 20)]

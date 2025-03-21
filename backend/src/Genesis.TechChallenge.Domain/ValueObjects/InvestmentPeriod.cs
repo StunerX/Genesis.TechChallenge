@@ -9,9 +9,9 @@ public record InvestmentPeriod
 
     public InvestmentPeriod(int Period)
     {
-        if (Period <= 0)
+        if (Period <= 1)
         {
-            throw new ArgumentException("Period must be greater than 0", nameof(Period));
+            throw new ArgumentException("Period must be greater than 1", nameof(Period));
         }
         
         this.Period = Period;
